@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Entry } from 'src/app/models/entry.model';
+import { Filter } from 'src/app/models/filtermodel';
 import { EntryService } from 'src/app/services/entry.service';
 
 @Component({
@@ -64,10 +65,7 @@ export class EntriesListComponent implements OnInit {
   }
 
   onFilterChange(): void {
-    let parameters = {
-      comparator: '',
-      orderField: ''
-    }
+    let parameters:Filter = {};
 
     if(this.selectedFilter == "1") {
       parameters.comparator = '>'; parameters.orderField = 'commentCount';
