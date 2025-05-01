@@ -15,27 +15,19 @@ export class EntryService {
     return this.http.get<Entry[]>(`${baseUrl}/list`);
   }
 
-  get(id: any): Observable<Entry> {
-    return this.http.get<Entry>(`${baseUrl}/${id}`);
-  }
-
   create(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
   }
 
-  update(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
-  }
-
-  delete(id: any): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
-  }
-
   deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
+    return this.http.delete(`${baseUrl}/delete`);
   }
 
   crawlEntries(): Observable<Entry[]> {
     return this.http.get<Entry[]>(`${baseUrl}/crawl`);
+  }
+
+  filterEntries(parameters: any): Observable<Entry[]> {
+    return this.http.post<Entry[]>(`${baseUrl}/listFiltered`, parameters);
   }
 }

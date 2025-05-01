@@ -19,10 +19,17 @@
       </div>
     </div>
   </div>
+
   <div class="col-md-12">
     <h4>Entries List</h4>
 
-    <table class="table">
+    <select class="form-select" placeholder="Filter Options"  aria-label="Filter options" [(ngModel)]="selectedFilter" (ngModelChange)="onFilterChange()">
+      <option [value]="null">-- Select filters --</option>
+      <option value="1">Filter all previous entries with more than five words in the title, ordered by the number of comments first</option>
+      <option value="2">Filter all previous entries with less than or equal to five words in the title, ordered by points</option>
+    </select>
+
+    <table *ngIf="entries && entries.length; else empty_state" class="table table-hover mt-3">
       <thead class="thead-dark">
         <tr>
           <th scope="col">#</th>
@@ -43,7 +50,11 @@
       </tbody>
     </table>
 
-    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllEntries()">
+    <ng-template #empty_state>
+        <div>There are no entries yet. Try clicking on the "Get Entries" button to fetch some records!</div>
+    </ng-template>
+
+    <button *ngIf="entries && entries.length" class="btn mb-5 btn-sm btn-danger" (click)="removeAllEntries()">
       Remove All
     </button>
   </div>

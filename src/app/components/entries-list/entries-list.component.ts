@@ -11,6 +11,7 @@ export class EntriesListComponent implements OnInit {
   entries?: Entry[];
   currentEntry: Entry = {};
   currentIndex = -1;
+  selectedFilter:string | null = null;
   targetUrl = 'https://news.ycombinator.com';
 
   constructor(private entryService: EntryService) {}
@@ -57,6 +58,34 @@ export class EntriesListComponent implements OnInit {
     this.entryService.crawlEntries().subscribe({
       next: () => {
         this.refreshList();
+      },
+      error: (e) => console.error(e)
+    });
+  }
+
+  onFilterChange(): void {
+    let parameters = {
+      comparator: '',
+      orderField: ''
+    }
+
+    if(this.selectedFilter == "1") {
+      parameters.comparator = '>'; parameters.orderField = 'commentCount';
+      this.applyFilter(parameters);
+    } else if (this.selectedFilter == "2") {
+      parameters.comparator = '<='; parameters.orderField = 'points';
+      this.applyFilter(parameters);
+    } else {
+      this.refreshList();
+    }
+
+  }
+
+  applyFilter(parameters: any): void {
+    this.entryService.filterEntries(parameters).subscribe({
+      next: (data) => {
+        this.entries = data;
+        console.log(data);
       },
       error: (e) => console.error(e)
     });
