@@ -1,0 +1,37 @@
+<div class="list row">
+
+  <div class="col-md-12">
+    <h4>Logs</h4>
+
+    <ng-container *ngIf="items && items.length; else empty_state">
+  
+      <table class="table table-hover mt-3">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Applied filter</th>
+            <th scope="col">Applied order field</th>
+            <th scope="col">Created at</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items">
+            <td>{{item.id}}</td>
+            <td>{{item.appliedFilter}}</td>
+            <td>{{item.appliedOrder}}</td>
+            <td>{{item.createdAt}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+
+    <ng-template #empty_state>
+        <div>There aren't any logs yet.</div>
+    </ng-template>
+
+    <button class="btn mb-5 btn-sm btn-outline-secondary" (click)="refreshList()">
+      Refresh
+    </button>
+
+  </div>
+</div>

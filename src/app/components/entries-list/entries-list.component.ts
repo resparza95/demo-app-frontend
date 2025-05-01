@@ -10,8 +10,6 @@ import { EntryService } from 'src/app/services/entry.service';
 })
 export class EntriesListComponent implements OnInit {
   entries?: Entry[];
-  currentEntry: Entry = {};
-  currentIndex = -1;
   selectedFilter:string | null = null;
   targetUrl = 'https://news.ycombinator.com';
 
@@ -33,13 +31,6 @@ export class EntriesListComponent implements OnInit {
 
   refreshList(): void {
     this.retrieveEntries();
-    this.currentEntry = {};
-    this.currentIndex = -1;
-  }
-
-  setActiveEntry(tutorial: Entry, index: number): void {
-    this.currentEntry = tutorial;
-    this.currentIndex = index;
   }
 
   removeAllEntries(): void {
@@ -53,9 +44,6 @@ export class EntriesListComponent implements OnInit {
   }
 
   crawl(): void {
-    this.currentEntry = {};
-    this.currentIndex = -1;
-
     this.entryService.crawlEntries().subscribe({
       next: () => {
         this.refreshList();

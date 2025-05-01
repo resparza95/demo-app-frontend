@@ -1,9 +1,9 @@
 export class Entry {
-  id?: any;
+  id?: number;
   position?: number;
   title?: string;
   points?: number;
   commentCount?: number;
-  createdAt?: number;
-  updatedAt?: number;
+  createdAt?: string;
+  updatedAt?: string;
 }

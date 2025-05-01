@@ -15,10 +15,6 @@ export class EntryService {
     return this.http.get<Entry[]>(`${baseUrl}/list`);
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
-  }
-
   deleteAll(): Observable<any> {
     return this.http.delete(`${baseUrl}/delete`);
   }
