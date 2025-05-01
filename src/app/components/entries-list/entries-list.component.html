@@ -1,0 +1,50 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        readonly
+        class="form-control"
+        placeholder="URL"
+        [(ngModel)]="targetUrl"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="crawl()"
+        >
+          Get Entries
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <h4>Entries List</h4>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Points</th>
+          <th scope="col">Comment Count</th>
+          <th scope="col">Created at</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of entries; let i = index">
+          <td>{{entry.position}}</td>
+          <td>{{entry.title}}</td>
+          <td>{{entry.points || '-' }}</td>
+          <td>{{entry.commentCount || '-' }}</td>
+          <td>{{entry.createdAt}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllEntries()">
+      Remove All
+    </button>
+  </div>
+</div>
