@@ -19,7 +19,7 @@ export class EntryService {
     return this.http.delete(`${baseUrl}/delete`);
   }
 
-  crawlEntries(): Observable<Entry[]> {
+  crawlEntries(): Observable<any> {
     return this.http.get<Entry[]>(`${baseUrl}/crawl`);
   }
 
