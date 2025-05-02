@@ -23,7 +23,6 @@ export class EntriesListComponent implements OnInit {
     this.entryService.getAll().subscribe({
       next: (data) => {
         this.entries = data;
-        console.log(data);
       },
       error: (e) => console.error(e)
     });
@@ -35,8 +34,7 @@ export class EntriesListComponent implements OnInit {
 
   removeAllEntries(): void {
     this.entryService.deleteAll().subscribe({
-      next: (res) => {
-        console.log(res);
+      next: () => {
         this.refreshList();
       },
       error: (e) => console.error(e)
@@ -71,7 +69,6 @@ export class EntriesListComponent implements OnInit {
     this.entryService.filterEntries(parameters).subscribe({
       next: (data) => {
         this.entries = data;
-        console.log(data);
       },
       error: (e) => console.error(e)
     });

@@ -20,7 +20,6 @@ export class LogsListComponent {
     this.logService.getAll().subscribe({
       next: (data) => {
         this.items = data;
-        console.log(data);
       },
       error: (e) => console.error(e)
     });
